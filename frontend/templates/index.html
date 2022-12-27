@@ -1,0 +1,31 @@
+<!doctype html>
+<title>Upload new File</title>
+<h1>  Upload new File</h1>
+<form method=post enctype=multipart/form-data>
+        <input type=file name=file>
+        <input type=submit value=Upload>
+</form>
+
+<style>
+        img {
+                max-height:500px;
+                max-width:500px;
+                border-radius: 10px;
+                float: left;
+                margin-right: 10px;
+        }
+
+        descr {
+                font-weight: bold;
+                font-size: 30px;
+        }
+</style>
+
+<body>
+        <img src="{{url_for('static', filename=variable) }}" align="middle", alt="no images">
+</body>
+</html>
+
+<descr>
+Image dsecription: {{var2}}
+</descr>

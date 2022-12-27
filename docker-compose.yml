@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  backend:
+    container_name: backend
+    build: backend/
+    restart: always
+    command: python backend.py
+    ports:
+      - "5555:5555"
+    networks:
+      - internal
+
+  frontend:
+    container_name: frontend
+    build: frontend/
+    restart: always
+    command: sh -c "./wait-for-it.sh backend:5555 -t 0 -- python frontend.py"
+    ports:
+      - "8899:8899"
+    depends_on:
+      - backend
+    networks:
+      internal:
+      external:
+        ipv4_address: 172.200.17.30
+
+
+networks:
+  external:
+    name: external
+    ipam:
+      config:
+        - subnet: 172.200.17.28/30
+  internal:
+    name: internal
